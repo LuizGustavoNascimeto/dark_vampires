@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://l211ucw8okut"]
+
+[ext_resource type="PackedScene" uid="uid://x3rl3piosjnc" path="res://character/knight.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://csd75sje8wxjv" path="res://scenario/tacape_com_espinhos/tacape_com_espinhos.tscn" id="2_1c2mv"]
+
+[node name="Test Level" type="Node2D" unique_id=728818667]
+position = Vector2(613, 334)
+
+[node name="TacapeEspinhos" parent="." unique_id=1353873685 instance=ExtResource("2_1c2mv")]
+position = Vector2(306, 146)
+
+[node name="CharacterBody2D" parent="." unique_id=1483664131 instance=ExtResource("1_gojnm")]

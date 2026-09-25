@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://x3rl3piosjnc"]
+
+[ext_resource type="Texture2D" uid="uid://ccoqaye5572on" path="res://character/godoi.png" id="1_2nw0r"]
+[ext_resource type="Script" uid="uid://dglj5y72lul13" path="res://character/knight.gd" id="1_cdlor"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vivr"]
+radius = 12.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1483664131]
+scale = Vector2(3, 3)
+script = ExtResource("1_cdlor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1051594227]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_1vivr")
+
+[node name="Godoi" type="Sprite2D" parent="." unique_id=836680418]
+texture = ExtResource("1_2nw0r")

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cefn7io6pupsa"]
+
+[ext_resource type="Script" uid="uid://f8f8tnj4kw8f" path="res://staminabar/staminabar.gd" id="1_ufe5h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ubhit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y66kq"]
+bg_color = Color(0.16906753, 0.44877535, 0.12164255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufe5h"]
+bg_color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.27450982)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m858o"]
+bg_color = Color(0.9999996, 0.9799358, 0.8988353, 1)
+
+[node name="Staminabar" type="ProgressBar" unique_id=1012860049]
+z_index = 1
+offset_right = 200.0
+offset_bottom = 8.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_ubhit")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y66kq")
+value = 60.0
+show_percentage = false
+script = ExtResource("1_ufe5h")
+
+[node name="Damagebar" type="ProgressBar" parent="." unique_id=1839537761]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ufe5h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m858o")
+value = 80.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1902032532]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

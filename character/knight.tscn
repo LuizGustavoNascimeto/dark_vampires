@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://x3rl3piosjnc"]
+
+[ext_resource type="Script" uid="uid://dglj5y72lul13" path="res://character/knight.gd" id="1_cdlor"]
+[ext_resource type="Texture2D" uid="uid://rygaaakrk0ww" path="res://character/knightIdle-Sheet.png" id="2_vtwkr"]
+[ext_resource type="Script" uid="uid://ck8vnd6agkbg5" path="res://character/hurt_box.gd" id="3_k7jq0"]
+[ext_resource type="PackedScene" uid="uid://ctxustvie4kw5" path="res://healthbar/healthbar.tscn" id="4_48eb5"]
+[ext_resource type="PackedScene" uid="uid://cefn7io6pupsa" path="res://staminabar/staminabar.tscn" id="5_vtwkr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeu0h"]
+atlas = ExtResource("2_vtwkr")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saxcf"]
+atlas = ExtResource("2_vtwkr")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vhet"]
+atlas = ExtResource("2_vtwkr")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y40wb"]
+atlas = ExtResource("2_vtwkr")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8yhs"]
+atlas = ExtResource("2_vtwkr")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeu0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saxcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vhet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y40wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8yhs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1483664131]
+scale = Vector2(3, 3)
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_cdlor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=953305086]
+position = Vector2(19.666668, 29.333334)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="CollisionScenario" type="CollisionPolygon2D" parent="." unique_id=699212901]
+polygon = PackedVector2Array(-3, -14, -3, -13, -5, -13, -5, -12, -7, -12, -7, -11, -8, -11, -8, -10, -9, -10, -9, -8, -10, -8, -10, -6, -11, -6, -11, -4, -10, -4, -10, 6, -9, 6, -9, 8, -8, 8, -8, 9, -7, 9, -7, 11, -6, 11, -6, 12, -2, 12, -2, 11, 1, 11, 1, 10, 3, 10, 3, 9, 4, 9, 4, 8, 5, 8, 5, 7, 6, 7, 6, 6, 7, 6, 7, 5, 8, 5, 8, 3, 9, 3, 9, -1, 10, -1, 10, -8, 9, -8, 9, -10, 8, -10, 8, -11, 6, -11, 6, -12, 4, -12, 4, -13, 2, -13, 2, -14)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=128656420]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_k7jq0")
+
+[node name="CollisionEnemy" type="CollisionPolygon2D" parent="HurtBox" unique_id=2144985928]
+polygon = PackedVector2Array(-3, -14, -3, -13, -5, -13, -5, -12, -7, -12, -7, -11, -8, -11, -8, -10, -9, -10, -9, -8, -10, -8, -10, -6, -11, -6, -11, -4, -10, -4, -10, 6, -9, 6, -9, 8, -8, 8, -8, 9, -7, 9, -7, 11, -6, 11, -6, 12, -2, 12, -2, 11, 1, 11, 1, 10, 3, 10, 3, 9, 4, 9, 4, 8, 5, 8, 5, 7, 6, 7, 6, 6, 7, 6, 7, 5, 8, 5, 8, 3, 9, 3, 9, -1, 10, -1, 10, -8, 9, -8, 9, -10, 8, -10, 8, -11, 6, -11, 6, -12, 4, -12, 4, -13, 2, -13, 2, -14)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1274063556]
+
+[node name="Healthbar" parent="CanvasLayer" unique_id=1440226137 instance=ExtResource("4_48eb5")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 260.0
+offset_bottom = 28.0
+
+[node name="Staminabar" parent="CanvasLayer" unique_id=1012860049 instance=ExtResource("5_vtwkr")]
+offset_left = 20.0
+offset_top = 35.0
+offset_right = 220.0
+offset_bottom = 43.0
+
+[node name="Timers" type="Node" parent="." unique_id=1261162718]
+
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=1802810836]
+wait_time = 0.25
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=823849628]
+wait_time = 0.5
+one_shot = true
+
+[node name="InvencibleTimer" type="Timer" parent="Timers" unique_id=1614167287]
+wait_time = 0.5
+one_shot = true
+
+[node name="StmCooldownTimer" type="Timer" parent="Timers" unique_id=1956935736]
+one_shot = true
