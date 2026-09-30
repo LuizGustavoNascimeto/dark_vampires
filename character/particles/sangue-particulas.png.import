@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfmuy6jceaht8"
-path="res://.godot/imported/knightIdle-Sheet.png-f79351549b48dc32f3e6b76a00e2607b.ctex"
+uid="uid://dst6pudglg4gm"
+path="res://.godot/imported/sangue-particulas.png-56af3fd8717d4a968efe8b03659a2548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/knightIdle-Sheet.png"
-dest_files=["res://.godot/imported/knightIdle-Sheet.png-f79351549b48dc32f3e6b76a00e2607b.ctex"]
+source_file="res://character/particles/sangue-particulas.png"
+dest_files=["res://.godot/imported/sangue-particulas.png-56af3fd8717d4a968efe8b03659a2548.ctex"]
 
 [params]
 

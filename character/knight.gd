@@ -4,12 +4,15 @@ const SPEED := 300.0
 const DASH_POWER := 3.5
 const DASH_ROTATION_SPEED := 30.0
 const DASH_COST := 45
-const STAMINA_RECOVER_RATE := 60.0 #/s
+const STAMINA_RECOVER_RATE := 90.0 #/s
 
 @onready var body_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $HurtBox
 @onready var health_bar = $CanvasLayer/Healthbar
 @onready var stamina_bar = $CanvasLayer/Staminabar
+
+@onready var dust_particles: GPUParticles2D = $Particles/DustParticles
+@onready var blood_particles_2d: GPUParticles2D = $Particles/BloodParticles2D
 
 
 @onready var dash_timer: Timer = $Timers/DashTimer
@@ -92,9 +95,11 @@ func start_dash(input_direction: Vector2) -> void:
 func apply_movement(input_direction: Vector2) -> void:
 	if input_direction.is_zero_approx():
 		self.velocity = Vector2.ZERO
+		dust_particles.emitting = false
 		return
 
 	last_move_direction = input_direction.normalized()
+	dust_particles.emitting = true
 	self.velocity = last_move_direction * SPEED
 
 
@@ -136,6 +141,7 @@ func update_hurtbox_collision() -> void:
 func reduce_health(dmg: int) -> void:
 	start_invencibility()
 	health -= dmg
+	blood_particles_2d.emitting = true 
 	if health < 0:
 		health = 0
 		die()

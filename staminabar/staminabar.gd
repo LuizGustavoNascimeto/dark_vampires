@@ -1,6 +1,6 @@
 extends ProgressBar
 
-const DAMAGE_REDUCE_RATE = 100
+const DAMAGE_REDUCE_RATE = 400
 
 @onready var timer = $Timer
 @onready var damage_bar = $Damagebar

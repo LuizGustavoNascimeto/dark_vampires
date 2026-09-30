@@ -5,6 +5,7 @@
 
 [node name="Test Level" type="Node2D" unique_id=728818667]
 position = Vector2(613, 334)
+metadata/_edit_horizontal_guides_ = [121.0]
 
 [node name="TacapeEspinhos" parent="." unique_id=1353873685 instance=ExtResource("2_1c2mv")]
 position = Vector2(306, 146)
