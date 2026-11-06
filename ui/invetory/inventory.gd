@@ -116,3 +116,15 @@ func _focus_current_tab() -> void:
 func toggle_charm(charm: ItemData) -> void:
 	equipped_charm = null if equipped_charm == charm else charm
 	charm_equipped.emit(equipped_charm)
+	
+func remove_item(item: ItemData) -> void:
+	var index := items.find(item)
+	if index == -1:
+		return
+	items.remove_at(index)
+	_build_slots()
+	if item.type == ItemData.ITEM_TYPE.CHARM:
+		if equipped_charm == item:
+			equipped_charm = null
+			charm_equipped.emit(null)   # Player undoes the effects
+		charms_changed.emit()

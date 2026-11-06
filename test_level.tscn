@@ -211,11 +211,23 @@ one_way_collision_margin = 1.7
 position = Vector2(35, -42)
 item = ExtResource("9_6emce")
 
-[node name="ItemCollectible2" parent="." unique_id=1778947105 instance=ExtResource("8_lnbra")]
+[node name="ItemCollectible2" parent="." unique_id=906651337 instance=ExtResource("8_lnbra")]
 position = Vector2(35, -42)
 item = ExtResource("9_6emce")
 
-[node name="ItemCollectible3" parent="." unique_id=1843290251 instance=ExtResource("8_lnbra")]
+[node name="ItemCollectible3" parent="." unique_id=741621496 instance=ExtResource("8_lnbra")]
+position = Vector2(35, -42)
+item = ExtResource("9_6emce")
+
+[node name="ItemCollectible4" parent="." unique_id=855857642 instance=ExtResource("8_lnbra")]
+position = Vector2(35, -42)
+item = ExtResource("9_6emce")
+
+[node name="ItemCollectible5" parent="." unique_id=1433553739 instance=ExtResource("8_lnbra")]
+position = Vector2(35, -42)
+item = ExtResource("9_6emce")
+
+[node name="ItemCollectible6" parent="." unique_id=841356214 instance=ExtResource("8_lnbra")]
 position = Vector2(35, -42)
 item = ExtResource("9_6emce")
 
