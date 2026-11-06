@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cefn7io6pupsa"]
 
-[ext_resource type="Script" uid="uid://f8f8tnj4kw8f" path="res://staminabar/staminabar.gd" id="1_ufe5h"]
+[ext_resource type="Script" uid="uid://f8f8tnj4kw8f" path="res://ui/staminabar/staminabar.gd" id="1_ufe5h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ubhit"]
 

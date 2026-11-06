@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://bbg2r8inobfg8"]
+
+[ext_resource type="Script" uid="uid://q18h1ytgqhi2" path="res://ui/invetory/inventory.gd" id="1_ie5nc"]
+[ext_resource type="PackedScene" uid="uid://frd1rk1ct2f7" path="res://ui/titleLabel.tscn" id="2_d18mu"]
+[ext_resource type="Script" uid="uid://c61h2efoc880p" path="res://ui/invetory/charmsCircle.gd" id="3_ini45"]
+
+[node name="Inventory" type="Control" unique_id=629074157 groups=["inventory"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ie5nc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=540455708]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=975620412]
+layout_mode = 2
+color = Color(0.20232788, 0.09189276, 0.024694517, 0.78431374)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Background" unique_id=1864266778]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Tabs" type="TabContainer" parent="MarginContainer/Background/MarginContainer" unique_id=1380299809]
+unique_name_in_owner = true
+layout_mode = 2
+current_tab = 1
+
+[node name="VGrid" type="HBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs" unique_id=1515052943]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 40
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid" unique_id=438342010]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="Detalhes" type="VBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid" unique_id=1141151379]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=493918464]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=688101945 instance=ExtResource("2_d18mu")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=1094218581]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+autowrap_mode = 2
+
+[node name="Charms" type="Control" parent="MarginContainer/Background/MarginContainer/Tabs" unique_id=1064520469]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_ini45")
+metadata/_tab_index = 1
+
+[node name="Ring" type="Control" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1901146635]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="Panel" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1949834413]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterIcon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Tabs/Charms/Center" unique_id=471896121]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Details" type="VBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1312354257]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CharmName" parent="MarginContainer/Background/MarginContainer/Tabs/Charms/Details" unique_id=877637717 instance=ExtResource("2_d18mu")]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1

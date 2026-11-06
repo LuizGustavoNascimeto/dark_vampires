@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://frd1rk1ct2f7"]
+
+[ext_resource type="FontFile" uid="uid://cnx15kcoh1eo6" path="res://ui/fonts/OldEnglishGothicPixelRegular-ow2Bo.ttf" id="1_q6p2g"]
+
+[node name="TitleLabel" type="Label" unique_id=688101945]
+theme_override_fonts/font = ExtResource("1_q6p2g")
+theme_override_font_sizes/font_size = 32

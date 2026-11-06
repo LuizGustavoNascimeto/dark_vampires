@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cjqobd3qab888"]
+
+[ext_resource type="Texture2D" uid="uid://dst6pudglg4gm" path="res://character/particles/sangue-particulas.png" id="1_hwlg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etkmo"]
+atlas = ExtResource("1_hwlg7")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw3pu"]
+atlas = ExtResource("1_hwlg7")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tumni"]
+atlas = ExtResource("1_hwlg7")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etkmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw3pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tumni")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" unique_id=1181027516]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1334152643]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"run"
+
+[node name="Label" type="Label" parent="." unique_id=1827908490]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 24.0

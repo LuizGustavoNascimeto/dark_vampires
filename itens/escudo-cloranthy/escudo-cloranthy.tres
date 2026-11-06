@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://wtr4minl17mg"]
+
+[ext_resource type="Script" uid="uid://brf1crrnybrmj" path="res://itens/item_data.gd" id="1_0h76b"]
+[ext_resource type="Texture2D" uid="uid://chnrhn8u4yvhb" path="res://itens/escudo-cloranthy/escudo-cloranthy.png" id="1_x826q"]
+
+[resource]
+script = ExtResource("1_0h76b")
+name = "Cloranth's Shield"
+type = 0
+name_code = "cloranth-shield"
+description = "Um escudo maneiro feito po um cara que sabe os fazia"
+numeric_buff = 0.3
+icon = ExtResource("1_x826q")
+metadata/_custom_type_script = "uid://brf1crrnybrmj"

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfocp2b7p4t6x"]
+
+[ext_resource type="Script" uid="uid://b42x8dxbh6gvl" path="res://itens/item_collectible.gd" id="1_yqpi5"]
+[ext_resource type="Texture2D" uid="uid://df4qd5y61l03u" path="res://character/particles/poeira.png" id="2_es4sm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_es4sm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ItemCollectible" type="Area2D" unique_id=1326188065]
+y_sort_enabled = true
+script = ExtResource("1_yqpi5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1375187701]
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=223303418]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_g4v7s")

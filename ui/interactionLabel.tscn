@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dsb1idg1tg5bp"]
+
+[node name="Control" type="MarginContainer" unique_id=1390049397]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -64.0
+offset_right = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 40
+
+[node name="Label" type="Label" parent="." unique_id=1102735446]
+layout_mode = 2
+text = "(R) Pegar"
