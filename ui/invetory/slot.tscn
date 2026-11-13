@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cnycx30pidyyo"]
+
+[ext_resource type="Texture2D" uid="uid://c6p21ckks54in" path="res://ui/invetory/ui-slot.png" id="1_enujo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0u6y"]
+texture = ExtResource("1_enujo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pcanv"]
+texture = ExtResource("1_enujo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxt02"]
+texture = ExtResource("1_enujo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enujo"]
+texture = ExtResource("1_enujo")
+
+[node name="Slot" type="Button" unique_id=979520765]
+custom_minimum_size = Vector2(64, 64)
+theme_override_styles/normal = SubResource("StyleBoxTexture_d0u6y")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pcanv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rxt02")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_enujo")
+expand_icon = true

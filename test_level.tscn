@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ci4dnedl83e7j" path="res://scenario/tilesets/morrinho-tileset.png" id="7_6emce"]
 [ext_resource type="PackedScene" uid="uid://cfocp2b7p4t6x" path="res://itens/item_collectible.tscn" id="8_lnbra"]
 [ext_resource type="Resource" uid="uid://wtr4minl17mg" path="res://itens/escudo-cloranthy/escudo-cloranthy.tres" id="9_6emce"]
+[ext_resource type="Resource" uid="uid://cn5semtp01tqt" path="res://itens/escudo-cloranthy/escudo-cloranthy-bosta.tres" id="9_lowby"]
+[ext_resource type="PackedScene" uid="uid://by8my4wxgpnoj" path="res://scenario/mist/mist.tscn" id="11_58smv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lowby"]
 texture = ExtResource("3_y646j")
@@ -211,32 +213,19 @@ one_way_collision_margin = 1.7
 position = Vector2(35, -42)
 item = ExtResource("9_6emce")
 
-[node name="ItemCollectible2" parent="." unique_id=906651337 instance=ExtResource("8_lnbra")]
+[node name="ItemCollectible2" parent="." unique_id=1895035362 instance=ExtResource("8_lnbra")]
 position = Vector2(35, -42)
-item = ExtResource("9_6emce")
-
-[node name="ItemCollectible3" parent="." unique_id=741621496 instance=ExtResource("8_lnbra")]
-position = Vector2(35, -42)
-item = ExtResource("9_6emce")
-
-[node name="ItemCollectible4" parent="." unique_id=855857642 instance=ExtResource("8_lnbra")]
-position = Vector2(35, -42)
-item = ExtResource("9_6emce")
-
-[node name="ItemCollectible5" parent="." unique_id=1433553739 instance=ExtResource("8_lnbra")]
-position = Vector2(35, -42)
-item = ExtResource("9_6emce")
-
-[node name="ItemCollectible6" parent="." unique_id=841356214 instance=ExtResource("8_lnbra")]
-position = Vector2(35, -42)
-item = ExtResource("9_6emce")
+item = ExtResource("9_lowby")
 
 [node name="CharacterBody2D" parent="." unique_id=1483664131 instance=ExtResource("1_gojnm")]
 y_sort_enabled = true
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1126270920]
+unique_name_in_owner = true
 zoom = Vector2(2.5, 2.5)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+[node name="Mist" parent="." unique_id=1547081577 instance=ExtResource("11_58smv")]

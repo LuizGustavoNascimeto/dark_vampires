@@ -2,6 +2,11 @@ extends Control
 
 signal charms_changed
 
+const SLOT_SCENE = preload("res://ui/invetory/slot.tscn")
+
+const TAB_ACTIVE := Color.WHITE
+const TAB_INACTIVE := Color(0.55, 0.55, 0.55)
+
 @export var items: Array[ItemData] = []
 
 @onready var grid: GridContainer = %GridContainer
@@ -10,6 +15,8 @@ signal charms_changed
 @onready var big_icon: TextureRect = %Icon
 @onready var tabs: TabContainer = %Tabs
 @onready var circle: Control = %Charms
+
+@onready var tab_entries: Array[Control] = [%ItemsTab, %CharmsTab]
 
 signal charm_equipped(charm: ItemData)
 var equipped_charm: ItemData = null
@@ -26,6 +33,7 @@ func _ready() -> void:
 	charm_equipped.connect(circle.set_equipped)
 	_build_slots()
 	_on_charms_changed()
+	_update_tab_header()
 
 
 # Called by collectible items. Returns true if the item fit.
@@ -53,14 +61,9 @@ func _build_slots() -> void:
 		child.queue_free()
 
 	for item in items:
-		var slot := Button.new()
-		slot.custom_minimum_size = Vector2(64, 64)
-		slot.focus_mode = Control.FOCUS_ALL
-		slot.expand_icon = true
+		var slot: Button = SLOT_SCENE.instantiate()
 		slot.icon = item.icon
-		# Focus (arrows/d-pad) updates the details panel
 		slot.focus_entered.connect(_show_item.bind(item))
-		# Mouse hover also selects
 		slot.mouse_entered.connect(slot.grab_focus)
 		grid.add_child(slot)
 
@@ -86,10 +89,10 @@ func _input(event: InputEvent) -> void:
 		_toggle()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_next"):
-		_change_tab(1)
+		_select_tab(1)
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_previous"):
-		_change_tab(-1)
+		_select_tab(0)
 		get_viewport().set_input_as_handled()
 
 
@@ -128,3 +131,15 @@ func remove_item(item: ItemData) -> void:
 			equipped_charm = null
 			charm_equipped.emit(null)   # Player undoes the effects
 		charms_changed.emit()
+
+func _select_tab(index: int) -> void:
+	if index == tabs.current_tab:
+		return
+	tabs.current_tab = index
+	_update_tab_header()
+	_focus_current_tab.call_deferred()
+
+
+func _update_tab_header() -> void:
+	for i in tab_entries.size():
+		tab_entries[i].modulate = TAB_ACTIVE if i == tabs.current_tab else TAB_INACTIVE

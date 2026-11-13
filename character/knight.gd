@@ -5,6 +5,7 @@ const SPEED := 125.0
 const DASH_POWER := 2.5
 const DASH_ROTATION_SPEED := 30.0
 const DASH_COST := 45
+const ATTACK_COST := 20
 var STAMINA_RECOVER_RATE := 90.0 # por segundo
 
 # ───────────── Nodes ─────────────
@@ -13,7 +14,9 @@ var STAMINA_RECOVER_RATE := 90.0 # por segundo
 @onready var health_bar = $CanvasLayer/Healthbar
 @onready var stamina_bar = $CanvasLayer/Staminabar
 @onready var inventory: Control = %Inventory  
-@onready var interaction_label: MarginContainer = $CanvasLayer/InteractionLabel
+@onready var interaction_box: PanelContainer = %InteractionBox
+@onready var interaction_label: Label = %InteractionLabel
+
 
 
 @onready var dust_particles: GPUParticles2D = $Particles/DustParticles
@@ -21,12 +24,13 @@ var STAMINA_RECOVER_RATE := 90.0 # por segundo
 
 @onready var dash_timer: Timer = $Timers/DashTimer
 @onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
+@onready var attack_cooldown_timer: Timer = $Timers/AttackCooldownTimer
 @onready var stamina_cooldown_timer: Timer = $Timers/StmCooldownTimer
 @onready var invencible_timer: Timer = $Timers/InvencibleTimer
 @onready var damage_style := stamina_bar.damage_bar.get_theme_stylebox("fill") as StyleBoxFlat
 
 # ───────────── Estado ─────────────
-enum States_enum { IDLE, WALK, DASH }
+enum States_enum { IDLE, WALK, DASH, ATTACK }
 var state: States_enum = States_enum.IDLE
 
 # Vida
@@ -66,9 +70,13 @@ func _physics_process(delta: float) -> void:
 
 	if can_start_dash():
 		start_dash(input_direction)
+	if can_start_attack():
+		attack()
 
 	if state == States_enum.DASH:
 		apply_dash(delta)
+	elif state == States_enum.ATTACK:
+		velocity = Vector2.ZERO  # ou deixa mover, se preferir
 	else:
 		apply_movement(input_direction)
 	
@@ -88,7 +96,12 @@ func get_input_direction() -> Vector2:
 func can_start_dash() -> bool:
 	return Input.is_action_just_pressed("dash") \
 		and dash_cooldown_timer.is_stopped() \
-		and state != States_enum.DASH
+		and (state == States_enum.IDLE || state == States_enum.WALK)
+
+func can_start_attack() -> bool:
+	return Input.is_action_just_pressed("attack") \
+		and attack_cooldown_timer.is_stopped() \
+		and (state == States_enum.IDLE || state == States_enum.WALK)
 
 
 # ───────────── Movimento ─────────────
@@ -108,9 +121,7 @@ func apply_movement(input_direction: Vector2) -> void:
 # ───────────── Dash ─────────────
 func start_dash(input_direction: Vector2) -> void:
 	if stamina <= 0:
-		print("ficou sem folego kkkkkkk")
 		return
-
 	if input_direction.is_zero_approx():
 		# Parado: recua para trás
 		dash_direction = -last_move_direction
@@ -119,6 +130,7 @@ func start_dash(input_direction: Vector2) -> void:
 		last_move_direction = input_direction.normalized()
 		dash_direction = last_move_direction
 		animate_dash = 1
+	
 
 	reduce_stamina(DASH_COST)
 	state = States_enum.DASH
@@ -128,34 +140,50 @@ func start_dash(input_direction: Vector2) -> void:
 	dash_timer.start()
 	dash_cooldown_timer.start()
 
-
 func apply_dash(delta: float) -> void:
 	velocity = dash_direction * SPEED * DASH_POWER
-
 	if animate_dash == 1:
 		body_sprite.rotate(DASH_ROTATION_SPEED * delta)
 	elif animate_dash == 2:
 		body_sprite.scale = Vector2(1.25, 0.75)
-
 
 func finish_dash() -> void:
 	state = States_enum.IDLE
 	animate_dash = 0
 	set_collision_mask_value(4, true)
 	update_hurtbox_collision()
-
 	body_sprite.rotation = 0.0
 	body_sprite.scale = Vector2.ONE
+
+# ───────────── Ataque  ─────────────
+func attack() -> void:
+	if stamina <= 0:
+		return
+	play_animation("attack", last_move_direction)
+
+	#last_move_direction = input_direction.normalized()
+	#dash_direction = last_move_direction
+	#animate_dash = 1
+#
+	reduce_stamina(ATTACK_COST)
+	state = States_enum.ATTACK
+	dust_particles.emitting = false
+	#update_hurtbox_collision()
+	attack_cooldown_timer.start()
+
 
 
 # ───────────── Animação ─────────────
 func update_animation() -> void:
+	if state == States_enum.ATTACK:
+		return
 	var prefix := "run" if state == States_enum.WALK else "idle"
 	play_animation(prefix, last_move_direction)
 
 
 func play_animation(prefix: String, facing: Vector2) -> void:
 	# Horizontal tem prioridade (igual ao original); senão cima/baixo
+	return
 	if not is_zero_approx(facing.x):
 		body_sprite.flip_h = facing.x < 0
 		body_sprite.play(prefix + "_right")
@@ -216,12 +244,11 @@ func recover_stamina(delta: float) -> void:
 		is_recovering_stamina = false
 		
 func show_interaction(text: String) -> void:
-	var label: Label = interaction_label.get_child(0)
-	label.text = text
-	interaction_label.visible = true
+	interaction_label.text = text
+	interaction_box.visible = true
 
 func hide_interaction() -> void:
-	interaction_label.visible = false
+	interaction_box.visible = false
 
 func _on_charm_equipped(charm: ItemData) -> void:
 	_remove_charm_effects(equipped_charm)
@@ -230,7 +257,6 @@ func _on_charm_equipped(charm: ItemData) -> void:
 
 
 func _apply_charm_effects(charm: ItemData) -> void:
-	print("deu BO AQUI")
 	if charm == null:
 		return
 	if charm.name_code == "cloranth-shield":
@@ -249,3 +275,10 @@ func _remove_charm_effects(charm: ItemData) -> void:
 		stamina_cooldown_timer.wait_time *= (1.0 + charm.numeric_buff)
 		damage_style.bg_color = Color.WHITE
 		return
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if state == States_enum.ATTACK:
+		dust_particles.emitting = false
+		state = States_enum.IDLE
+		

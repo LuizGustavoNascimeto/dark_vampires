@@ -2,6 +2,8 @@ extends Control
 
 signal charm_pressed(charm: ItemData)
 
+const CHARM_SLOT_SCENE = preload("res://ui/invetory/charm-slot.tscn")
+
 @export var slot_size := Vector2(64, 64)
 @export var base_radius := 140.0
 @export var slot_gap := 12.0
@@ -37,13 +39,11 @@ func build(new_charms: Array[ItemData]) -> void:
 
 	var radius := _get_radius(count)
 	for i in count:
-		var slot := Button.new()
+		var slot: Button = CHARM_SLOT_SCENE.instantiate()
 		slot.custom_minimum_size = slot_size
 		slot.size = slot_size
 		slot.pivot_offset = slot_size / 2.0   # scale/rotate around the center
-		slot.expand_icon = true
 		slot.icon = charms[i].icon
-		slot.focus_mode = Control.FOCUS_ALL
 		slot.pressed.connect(charm_pressed.emit.bind(charms[i]))
 		slot.focus_entered.connect(_on_slot_focused.bind(i))
 		slot.focus_exited.connect(_animate_slot_scale.bind(slot, 1.0))
@@ -85,7 +85,7 @@ func _refresh_equipped() -> void:
 	center_icon.texture = equipped.icon if equipped else null
 	for i in slots.size():
 		var is_equipped := charms[i] == equipped
-		slots[i].modulate = Color(1.0, 0.9, 0.4) if is_equipped else Color.WHITE
+		slots[i].set_pressed_no_signal(is_equipped)
 
 
 # Focuses the equipped charm, or the first one if none is equipped

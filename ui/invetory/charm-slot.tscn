@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cuoajcpcg10fj"]
+
+[ext_resource type="Texture2D" uid="uid://1377iinixbtw" path="res://ui/invetory/ui-charm-slot.png" id="1_h68rh"]
+[ext_resource type="Texture2D" uid="uid://b0ptc0b2bo17x" path="res://ui/invetory/ui-charm-slot-pressed.png" id="2_eyepf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+texture = ExtResource("1_h68rh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58smv"]
+texture = ExtResource("2_eyepf")
+
+[node name="Button" type="Button" unique_id=1958630704]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_g4v7s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_58smv")
+toggle_mode = true
+expand_icon = true

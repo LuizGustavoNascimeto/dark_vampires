@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://com46af6y0vx1"
-path="res://.godot/imported/knightRun-Sheet.png-493dc86f8dd94bdff79f3e876fb72ec2.ctex"
+uid="uid://32ucyw6qn0vy"
+path="res://.godot/imported/knightDrink-sword-Sheet.png-116266d7f2a612331054c1dcb2e46530.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/knightRun-Sheet.png"
-dest_files=["res://.godot/imported/knightRun-Sheet.png-493dc86f8dd94bdff79f3e876fb72ec2.ctex"]
+source_file="res://character/sheets/knightDrink-sword-Sheet.png"
+dest_files=["res://.godot/imported/knightDrink-sword-Sheet.png-116266d7f2a612331054c1dcb2e46530.ctex"]
 
 [params]
 

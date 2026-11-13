@@ -2,7 +2,28 @@
 
 [ext_resource type="Script" uid="uid://q18h1ytgqhi2" path="res://ui/invetory/inventory.gd" id="1_ie5nc"]
 [ext_resource type="PackedScene" uid="uid://frd1rk1ct2f7" path="res://ui/titleLabel.tscn" id="2_d18mu"]
+[ext_resource type="Texture2D" uid="uid://do8ipatrwqjhj" path="res://ui/teclas/tecla-e.png" id="2_lkr7f"]
 [ext_resource type="Script" uid="uid://c61h2efoc880p" path="res://ui/invetory/charmsCircle.gd" id="3_ini45"]
+[ext_resource type="Texture2D" uid="uid://c2213xchqh3y0" path="res://ui/teclas/tecla-q.png" id="3_lm4cu"]
+[ext_resource type="Texture2D" uid="uid://bjngh63cg3chd" path="res://ui/invetory/ui-charm-active-slot.png" id="4_245gl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkr7f"]
+load_path = "res://.godot/imported/ui-fundo.png-54a26f406e13361cf1c50583ec50d142.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+texture = SubResource("CompressedTexture2D_lkr7f")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.84313726, 0.84313726, 0.84313726, 0.7647059)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ini45"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cqkyr"]
+texture = ExtResource("4_245gl")
+
+[sub_resource type="Theme" id="Theme_eyepf"]
 
 [node name="Inventory" type="Control" unique_id=629074157 groups=["inventory"]]
 layout_mode = 3
@@ -13,82 +34,132 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ie5nc")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=540455708]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=641418510]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
 
-[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=975620412]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=540455708]
 layout_mode = 2
-color = Color(0.20232788, 0.09189276, 0.024694517, 0.78431374)
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Background" unique_id=1864266778]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Tabs" type="TabContainer" parent="MarginContainer/Background/MarginContainer" unique_id=1380299809]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1860704706]
+layout_mode = 2
+
+[node name="TabsHeader" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=963873592]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="CharmsTab" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader" unique_id=1589641794]
 unique_name_in_owner = true
 layout_mode = 2
-current_tab = 1
+mouse_filter = 2
 
-[node name="VGrid" type="HBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs" unique_id=1515052943]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/CharmsTab" unique_id=2103583765]
 layout_mode = 2
-theme_override_constants/separation = 40
+
+[node name="KeyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/CharmsTab/HBoxContainer" unique_id=282604936]
+layout_mode = 2
+texture = ExtResource("2_lkr7f")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/CharmsTab/HBoxContainer" unique_id=2096211856]
+layout_mode = 2
+text = "Itens"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader" unique_id=1383072186]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemsTab" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader" unique_id=1628445231]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/ItemsTab" unique_id=1534265384]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="KeyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/ItemsTab/HBoxContainer" unique_id=84394704]
+layout_mode = 2
+texture = ExtResource("3_lm4cu")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabsHeader/ItemsTab/HBoxContainer" unique_id=1765091817]
+layout_mode = 2
+text = "Charms"
+horizontal_alignment = 1
+
+[node name="Tabs" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1380299809]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ini45")
+current_tab = 0
+tabs_visible = false
+
+[node name="Itens" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs" unique_id=962810766]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 0
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid" unique_id=438342010]
+[node name="VContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens" unique_id=1515052943]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens/VContainer" unique_id=438342010]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
 columns = 4
 
-[node name="Detalhes" type="VBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid" unique_id=1141151379]
+[node name="Detalhes" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens/VContainer" unique_id=1141151379]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=493918464]
+[node name="Icon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens/VContainer/Detalhes" unique_id=493918464]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TitleLabel" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=688101945 instance=ExtResource("2_d18mu")]
+[node name="TitleLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens/VContainer/Detalhes" unique_id=688101945 instance=ExtResource("2_d18mu")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Description" type="Label" parent="MarginContainer/Background/MarginContainer/Tabs/VGrid/Detalhes" unique_id=1094218581]
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Itens/VContainer/Detalhes" unique_id=1094218581]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 autowrap_mode = 2
 
-[node name="Charms" type="Control" parent="MarginContainer/Background/MarginContainer/Tabs" unique_id=1064520469]
+[node name="Charms" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs" unique_id=1064520469]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("3_ini45")
 metadata/_tab_index = 1
 
-[node name="Ring" type="Control" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1901146635]
+[node name="Ring" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Charms" unique_id=1901146635]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -99,7 +170,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="Panel" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1949834413]
+[node name="Center" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Charms" unique_id=1949834413]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 8
@@ -114,8 +185,9 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cqkyr")
 
-[node name="CenterIcon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Tabs/Charms/Center" unique_id=471896121]
+[node name="CenterIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Charms/Center" unique_id=471896121]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -124,10 +196,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_eyepf")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Details" type="VBoxContainer" parent="MarginContainer/Background/MarginContainer/Tabs/Charms" unique_id=1312354257]
+[node name="Details" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Charms" unique_id=1312354257]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -140,7 +213,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="CharmName" parent="MarginContainer/Background/MarginContainer/Tabs/Charms/Details" unique_id=877637717 instance=ExtResource("2_d18mu")]
+[node name="CharmName" parent="PanelContainer/MarginContainer/VBoxContainer/Tabs/Charms/Details" unique_id=877637717 instance=ExtResource("2_d18mu")]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1

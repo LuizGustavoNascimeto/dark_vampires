@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f35om27urc6h"
-path="res://.godot/imported/knightIdle-Sheet.png-f79351549b48dc32f3e6b76a00e2607b.ctex"
+uid="uid://c7rpsuxgxxhu3"
+path="res://.godot/imported/knightAttack-sword-Sheet.png-bb568cad08f6c4f7b9c3a2a6bbd7ecda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/knightIdle-Sheet.png"
-dest_files=["res://.godot/imported/knightIdle-Sheet.png-f79351549b48dc32f3e6b76a00e2607b.ctex"]
+source_file="res://character/sheets/knightAttack-sword-Sheet.png"
+dest_files=["res://.godot/imported/knightAttack-sword-Sheet.png-bb568cad08f6c4f7b9c3a2a6bbd7ecda.ctex"]
 
 [params]
 
